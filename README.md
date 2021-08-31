@@ -1,20 +1,28 @@
 # raspi_led_device_driver
 
+## 1. インストール
+
 ```bash
 $ make
 $ sudo insmod myled.ko
 $ sudo chmod 666 /dev/myled0
-$ echo abc > /dev/myled0
-$ tail /var/log/syslog
+$ tail /var/log/syslog # ログを確認
 ...
-Aug 31 03:56:11 ubuntu kernel: [1543104.443591] /home/ubuntu/raspi_led_device_driver/myled.c is loaded. major:499
-Aug 31 03:56:22 ubuntu kernel: [1543114.962910] receive a
-Aug 31 03:56:22 ubuntu kernel: [1543114.962928] receive b
-Aug 31 03:56:22 ubuntu kernel: [1543114.962940] receive c
-Aug 31 03:56:22 ubuntu kernel: [1543114.962951] receive
-Aug 31 03:56:22 ubuntu kernel: [1543114.962951]
+Aug 31 04:05:47 ubuntu kernel: [1543679.899225] /home/ubuntu/raspi_led_device_driver/myled.c is loaded. major:499
 ```
+
+## 2. LED 操作
+
+```bash
+$ echo 1 > /dev/myled0 # LED 点灯
+$ echo 0 > /dev/myled0 # LED 消灯
+```
+
+## 3. アンインストール
 
 ```bash
 $ sudo rmmod myled
+$ tail /var/log/syslog # ログを確認
+...
+Aug 31 04:08:58 ubuntu kernel: [1543871.195933] /home/ubuntu/raspi_led_device_driver/myled.c is unloaded. major:499
 ```
